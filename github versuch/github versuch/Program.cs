@@ -11,6 +11,7 @@ namespace github_versuch
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Console.WriteLine("Versuch2");
             Console.ReadLine();
         }
     }
