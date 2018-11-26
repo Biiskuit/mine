@@ -68,6 +68,9 @@ namespace github_versuch
             Class2 Test = new Class2();
             Test.CombineMultipleFilesIntoSingleFile();
 
+           // Class3 Test = new Class3();
+            //Test.MergeMultipleDocuments();
+
             Console.ReadLine();
         }
 
