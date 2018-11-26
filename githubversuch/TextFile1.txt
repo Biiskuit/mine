@@ -1,0 +1,58 @@
+{
+    // This is the Export Location. Use \\ instead of \
+    "RootLocation":"\\\\fsupvault\\tsysglobal$\\Reporting\\LowValueAsset",
+    "ExportReportAT": "\\Reports\\AT",
+    "ExportReportSG": "\\Reports\\SG",
+    "ReportTemp": "\\Internal\\temp",
+    "ExportReportArchive": "\\Internal\\Archive\\Report",
+    "ExportLocationLog":"\\Reports\\Log",
+  
+    "ImportPortfolio":["\\PortfolioListAT\\Stock.AT.csv","\\PortfolioListSG\\Stock.SG.csv"],
+    "ImportLocations":"\\\\v1794816e\\c$\\Jobs\\CMDBusersync\\UserLocationMapping.csv",
+    "DefaultDeliveryLocationAT":"Helpdesk Premstaetten",
+    "DefaultDeliveryLocationSG":"Helpdesk Tampines",
+    "AssignementGroupAT":"CS.EMEA.AT.AMSINT.SR",
+    "AssignementGroupSG":"CS.EMEA.AT.AMSINT.SR",
+  
+  
+  
+    // The Location of the SMTP Server
+    "smtp": "ams-smtp.office.amsiag.com",
+    // Array of Mail Addresses ["Mail1","Mail2","Mail3"]
+    "ToList": [ "klaus.ekam@ams.com","sabrina.schantl@ams.com" ],
+    //"ToList": [ "mail2automate@t-systems.at" ],
+    "ToListServiceRequestAT":["walburga.kurzmann@t-systems.com","ramona.salinas@t-systems.com"],
+    "ToListServiceRequestSG":["walburga.kurzmann@t-systems.com","ramona.salinas@t-systems.com"],
+    //"ToListServiceRequestAT":["klaus.ekam@ams.com"], // Development
+    //"ToListServiceRequestSG":["klaus.ekam@ams.com"], // Development
+    // MAil To TSA SM9: "fmb_at_mail2automate@t-systems.com",
+    "ToListTicket":["fmb_at_mail2automate@t-systems.com"],
+    //"ToListTicket":["klaus.ekam@ams.com",], // Development
+    // From Mail Address must not be a real Mail address
+    "From": "noreply_TSA_ToolsAndProcesses@ams.com",
+    "SubjectServiceRequest":"This is a warning:  The minimum quantity of following LVAs has/have been reached"
+  }
+  
+  // Change Log
+  /*
+    1.0 Initial Version
+  
+  
+  */
+  
+  
+  // Common:
+  /*
+   This File must be copied to the RootFolder of the programm
+  
+  
+  
+  
+  */
+  
+  
+  // Programm Flow
+  /*
+  
+  */
+  
