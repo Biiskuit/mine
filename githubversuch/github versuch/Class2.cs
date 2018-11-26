@@ -4,7 +4,20 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Net.Mail;
+
+
+// + Read all ReportX 
+// + create 1 report File Report|Monthx|.csv
+// + move all reportx and charging report??? to archive folder
+// Send Mail to Service Request (Burgi, Ramona) with report file
+
+    //To do!
+    //+ log file eintragen + zugriff
+    //send mail
+    //preise zusammenrechnen letzte zeile
+    // + pfade anpassen
+
 
 namespace github_versuch
 {
@@ -12,9 +25,11 @@ namespace github_versuch
     {
         private string inputDirectoryPath = @"C:\Datein\";
         private string inputFileNamePattern = "*.csv";
-        public string outputFilePath = @"C:\Monate\" + $"{DateTime.Now.ToString("MMMM")}_Report.csv";
+        public string outputFilePath = @"C:\Archiv\" + $"{DateTime.Now.ToString("MMMM")}_Report.csv";
+        private string outputArchiv = @"C:\Archiv\";
+        private string newArchiv = @"C:\Archiv\" + $"{DateTime.Now.ToString("MMMM")}";
 
-        
+
 
         public void CombineMultipleFilesIntoSingleFile()
         {
@@ -30,88 +45,43 @@ namespace github_versuch
                     .SelectMany(csv => File.ReadLines(csv)
                         .SkipWhile(l => string.IsNullOrWhiteSpace(l)).Skip(1)); // skip header of each file
                 File.WriteAllLines(outputFilePath, header.Concat(mergedData));
-
-                //Console.WriteLine("The file {0} has been processed.", inputFilePaths);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine($"An exception occured: {e.Message}!");
-            }
-
-        /*
+                //Error.Add("The files have been processed.");
+                Console.WriteLine("The files have been processed."); //Console
 
 
-            string[] inputFilePaths = Directory.GetFiles(inputDirectoryPath, inputFileNamePattern);
-            Console.WriteLine("Number of files: {0}.", inputFilePaths.Length);
 
-
-            using (var outputStream = File.Create(outputFilePath))
-            {
-                foreach (string inputFilePath in inputFilePaths) //every file
+                foreach (var file in new DirectoryInfo(inputDirectoryPath).GetFiles()) //Move files + create monthly folder
                 {
-
-                    // File.AppendAllText(outputFilePath, File.ReadAllText(inputFilePath));
-                    using (FileStream inputStream = File.OpenRead(inputFilePath)) //openRead
-                    {
-
-
-
-                        //File.AppendAllText(outputFilePath, File.ReadAllText(inputStream));
-
-                        // Buffer size can be passed as the second argument.
-                        firstlistA.CopyTo(outputStream);
-                    }
-
-
-
-                    Console.WriteLine("The file {0} has been processed.", inputFilePath);
+                    Directory.CreateDirectory(outputArchiv + $"{DateTime.Now.ToString("MMMM")}");
+                    file.MoveTo($@"{newArchiv}\{file.Name}");
+                    //Error.Add("Files have been moved to new archiv folder.");
+                    Console.WriteLine("Files have been moved to new archiv folder."); //Console
                 }
             }
-
-            */
-
-
-
-
-
-
-        /*
-
-
-    using (var outputStream = File.Create(outputFilePath))
-    {
-
-
-        foreach (var inputFilePath in inputFilePaths) //every file
-        {
-
-           // File.AppendAllText(outputFilePath, File.ReadAllText(inputFilePath));
-
-
-            using (var inputStream = File.OpenRead(inputFilePath)) //openRead
+            catch (Exception e) //Exception
             {
-
-
-
-
-
-
-
-                //File.AppendAllText(outputFilePath, File.ReadAllText(inputStream));
-
-
-                // Buffer size can be passed as the second argument.
-                inputStream.CopyTo(outputStream);
+                //Error.Add($"An exception occured while combining files");
+                Console.WriteLine($"An exception occured while combining files: {e.Message}!");
+                throw new SystemException("An exception occured while combining files.");
             }
+            //log.Log(Error); // Write Log
+            //Error.Clear(); // Clear Log
 
-
-
-            Console.WriteLine("The file {0} has been processed.", inputFilePath);
-                }
-        
-            }
+            /*
+            
+            // Send Mail to SR Austria
+            sendMail.SendMailBecauseOfMonthlyReport(InformServiceRequestAT, set.GetSettings, "AT");
+            log.Log(new List<string>() { "A mail has been send to AT, because of new monthly report." });
+            Console.WriteLine("A mail has been send to AT, because of new monthly report.");
+            
             */
-    
+
+
+
+
+
+
+
 
 
         }
